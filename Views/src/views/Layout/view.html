@@ -1,0 +1,41 @@
+<div class="fm-lefteasyui-wrap lay-wrap vertical">
+    <div class="lay-head lg" >
+        <div class="lay-wrap horizontal" >
+            <div class="lay-main side-left-xl side-right-md">
+                <div class="lay-cont">            
+                </div>
+            </div>
+            <div class="side-left xl sys-title"> 
+                XXX系统       
+            </div>
+            <div class="side-right md user-info"> 
+                <span data-bind="text:userInfo,click:onProfile"  ></span>       
+            </div>
+        </div>
+    </div>
+    <div class="lay-cont head-lg">
+        <div class="lay-wrap horizontal">
+            <div class="lay-main side-left-md">
+                <div class="lay-cont lay-wrap vertical">
+                    <div class="lay-cont bottom-xs main-comp">  
+                        <ko-components params="comp:comp,showHeader:true" ></ko-components>
+                    </div>   
+                    <div class="lay-bottom xs">
+                        <div class="lay-wrap horizontal" >
+                            <div class="lay-main side-left-xl side-right-md">
+                                <div class="lay-cont">            
+                                </div>
+                            </div>
+                            <div class="side-left xl sys-status"> 
+                                状态提示       
+                            </div>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+            <div class="side-left menu-list md">        
+                <ko-sidemenu params="options:menusOpt" class="sidemenu-dark" ></ko-sidemenu>
+            </div>
+        </div>
+    </div>
+</div>

@@ -44,7 +44,15 @@ namespace BAccurate.WebApi.Framework
                 .UseAutoSyncStructure(true)
                 .Build();
             BAccurateDbContext.Fluent(nfrs);
-            builder.RegisterType<BAccurateDbContext>().WithParameter(new NamedParameter("freeSql", nfrs) { });
+            builder.RegisterType<BAccurateDbContext>().WithParameter(new NamedParameter("freeSql", nfrs) { });mys
+            
+            //mysql
+                //     IFreeSql freemySql = new FreeSql.FreeSqlBuilder()
+               // .UseConnectionString(FreeSql.DataType.MySql, cfg.AccurateConn)
+              //  .UseAutoSyncStructure(true)
+              //  .Build();
+              // BAccurateDbContext.Fluent(freemySql);
+          //  builder.RegisterType<BAccurateDbContext>().WithParameter(new NamedParameter("freeSql", freemySql) { });
 
             #endregion
 

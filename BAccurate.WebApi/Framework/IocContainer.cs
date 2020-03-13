@@ -14,6 +14,8 @@ using System.Configuration;
 using BAccurate.WebApi.Framework;
 using SAM.Framework;
 using Autofac.Core;
+using BAccurate.Implement.Domain;
+using BAccurate.Domain;
 
 namespace BAccurate.WebApi.Framework
 {
@@ -67,11 +69,17 @@ namespace BAccurate.WebApi.Framework
             builder.RegisterType<Mapper>().As<IMapper>().InstancePerLifetimeScope();
             builder.RegisterType<DtoMapper>().As<IFMapper>().InstancePerLifetimeScope();
 
+            // 注册核心业务
+            builder.RegisterType<OnlineUserMgr>().As<IOnlineUserMgr>().SingleInstance();
+
+
+
             IOCContainer = builder.Build();
 
             // webApi部分注册
             HttpConfiguration config = GlobalConfiguration.Configuration;
             config.DependencyResolver = new AutofacWebApiDependencyResolver(IOCContainer);
+
         }
 
         public static BAccurateConfig CreateCfg()

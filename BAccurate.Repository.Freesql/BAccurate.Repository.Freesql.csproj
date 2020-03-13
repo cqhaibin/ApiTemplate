@@ -43,8 +43,12 @@
     <Reference Include="SafeObjectPool, Version=2.1.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SafeObjectPool.2.1.6\lib\net45\SafeObjectPool.dll</HintPath>
     </Reference>
+    <Reference Include="SAM.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SAM.Framework.1.0.0-alpha\lib\net40\SAM.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -56,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\ReadAuthRepository.cs" />
+    <Compile Include="Auth\TokenRepository.cs" />
     <Compile Include="BAccurateContext.cs" />
     <Compile Include="BAccurateDbContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
@@ -67,6 +73,19 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BAccurate.Implement\BAccurate.Implement.csproj">
+      <Project>{d1c1e8c3-eb87-4997-bef6-d4f8e5b46155}</Project>
+      <Name>BAccurate.Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BAccurate\BAccurate.csproj">
+      <Project>{d2133e66-5e69-41cd-8737-efce28c5558f}</Project>
+      <Name>BAccurate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Auth\Eneities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

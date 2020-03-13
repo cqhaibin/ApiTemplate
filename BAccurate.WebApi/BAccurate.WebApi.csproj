@@ -112,18 +112,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\S_StaffinfoController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Extends\LongToString.cs" />
+    <Compile Include="Extends\UAParser.cs" />
     <Compile Include="Framework\DtoMapper.cs" />
     <Compile Include="Framework\IocContainer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Extends\ua-regexes.yaml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

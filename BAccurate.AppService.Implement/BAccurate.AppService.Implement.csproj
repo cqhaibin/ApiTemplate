@@ -57,11 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="S_StaffinfoService.cs" />
     <Compile Include="TestService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BAccurate.Implement\BAccurate.Implement.csproj">
+      <Project>{d1c1e8c3-eb87-4997-bef6-d4f8e5b46155}</Project>
+      <Name>BAccurate.Implement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BAccurate.Repository.Freesql\BAccurate.Repository.Freesql.csproj">
       <Project>{c443241c-227e-4dfb-b5bb-93ef7d7f2698}</Project>
       <Name>BAccurate.Repository.Freesql</Name>

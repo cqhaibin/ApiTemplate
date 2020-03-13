@@ -144,7 +144,7 @@ namespace BAccurate.WebApi.Extends
 
         public static Parser GetDefault()
         {
-            using (var stream = typeof(Parser).Assembly.GetManifestResourceStream("BEarth.Ocm.WebApi.Extends.ua-regexes.yaml"))
+            using (var stream = typeof(Parser).Assembly.GetManifestResourceStream("BAccurate.WebApi.Extends.ua-regexes.yaml"))
             // ReSharper disable once AssignNullToNotNullAttribute
             using (var reader = new StreamReader(stream))
                 return new Parser(new MinimalYamlParser(reader.ReadToEnd()));

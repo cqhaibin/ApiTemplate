@@ -127,7 +127,7 @@
     <Compile Include="Utils\Common.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Extends\ua-regexes.yaml" />
+    <EmbeddedResource Include="Extends\ua-regexes.yaml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

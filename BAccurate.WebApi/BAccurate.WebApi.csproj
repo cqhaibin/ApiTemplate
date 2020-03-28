@@ -115,7 +115,6 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\S_StaffinfoController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Extends\LongToString.cs" />
     <Compile Include="Extends\UAParser.cs" />
     <Compile Include="Framework\DtoMapper.cs" />

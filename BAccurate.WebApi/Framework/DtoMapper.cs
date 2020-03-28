@@ -1,7 +1,8 @@
 ﻿using SAM.Framework;
 using AutoMapper;
 using BAccurate.Repository.Freesql.Entities;
-using BAccurate.Models.Test;
+using BAccurate.Repository.Freesql.Auth.Entities;
+using BAccurate.Domain;
 
 namespace BAccurate.WebApi.Framework
 {
@@ -21,7 +22,10 @@ namespace BAccurate.WebApi.Framework
         {
             return new MapperConfiguration(x =>
             {
-                x.CreateMap<TestEntity, TestInfo>();   
+                x.CreateMap<TokendbEntity, TokenEntity>();
+                var tokenTodbEntity = x.CreateMap<TokenEntity, TokendbEntity>();
+                tokenTodbEntity.ForMember(m => m.Ip, (f => f.MapFrom(m => m.ClientInfo.IP)));
+                tokenTodbEntity.ForMember(m => m.UserId, (f => f.MapFrom(m => m.UserInfo.Id)));
             });
         }
     }

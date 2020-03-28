@@ -60,13 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\Entities\TokendbEntity.cs" />
     <Compile Include="Auth\ReadAuthRepository.cs" />
     <Compile Include="Auth\TokenRepository.cs" />
     <Compile Include="BAccurateContext.cs" />
     <Compile Include="BAccurateDbContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\S_StaffinfoEntity.cs" />
-    <Compile Include="Entities\TestEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,8 +84,6 @@
       <Name>BAccurate</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Auth\Eneities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

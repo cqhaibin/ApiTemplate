@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="AppServices\IAuthAppService.cs" />
     <Compile Include="AppServices\IS_StaffinfoAppService.cs" />
-    <Compile Include="AppServices\ITestService.cs" />
     <Compile Include="BAccurateConfig.cs" />
     <Compile Include="Domain\IReadAuthRepository.cs" />
     <Compile Include="Domain\ITokenRepository.cs" />
@@ -61,8 +60,6 @@
     <Compile Include="Models\RequestClientInfo.cs" />
     <Compile Include="Models\S_Staffinfo\S_StaffinfoInfo.cs" />
     <Compile Include="Models\S_Staffinfo\S_StaffinfoQuery.cs" />
-    <Compile Include="Models\Test\QueryTest.cs" />
-    <Compile Include="Models\Test\TestInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

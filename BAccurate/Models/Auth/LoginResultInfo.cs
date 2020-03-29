@@ -24,5 +24,10 @@ namespace BAccurate.Models.Auth
         public string Config { get; set; }
 
         public string MobilePhone { get; set; }
+
+        /// <summary>
+        /// 角色ID列表
+        /// </summary>
+        public int[] Roles { get; set; }
     }
 }

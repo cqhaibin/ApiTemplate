@@ -13,10 +13,15 @@ namespace BAccurate.Implement.Domain
     public class UserEntity : IUserEntity
     {
         private IReadAuthRepository readAuthRepository;
+        private IOnlineUserMgr onlineUserMgr;
 
-        public UserEntity(int userId, IReadAuthRepository readAuthRepository, RequestClientInfo clientInfo)
+        public UserEntity(int userId, 
+            IReadAuthRepository readAuthRepository, 
+            RequestClientInfo clientInfo,
+            IOnlineUserMgr onlineUserMgr)
         {
             this.readAuthRepository = readAuthRepository;
+            this.onlineUserMgr = onlineUserMgr;
             this.UserInfo = this.readAuthRepository.GetUserInfo(userId);
             if (this.UserInfo == null)
             {
@@ -56,6 +61,34 @@ namespace BAccurate.Implement.Domain
                 LoginTime = LoginTime,
                 ExpiredTime = ExpiredTime
             };
+        }
+
+        public bool Verify()
+        {
+            return DateTime.Now <= this.ExpiredTime;
+        }
+
+        public bool Verify(string resCode)
+        {
+            var isVerify = this.Verify();
+            if (isVerify)
+            {
+                isVerify = false;
+                var roles = this.UserInfo.Roles;
+                var roleAndRes = this.onlineUserMgr.GetAllRoleAndRes();
+                if (roles != null)
+                {
+                    foreach(var r in roles)
+                    {
+                        if(roleAndRes.Any(m=>m.RoleId == r && m.ResourceCode == resCode))
+                        {
+                            isVerify = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return isVerify;
         }
 
         private string GetMd5(string cont)

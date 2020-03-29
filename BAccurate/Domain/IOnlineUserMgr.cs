@@ -38,5 +38,10 @@ namespace BAccurate.Domain
         IList<IUserEntity>  GetAll();
 
         IUserEntity Get(int userId);
+
+        List<Models.Auth.ResourceInfo>  GetAllRes();
+
+        List<Models.Auth.RoleAndResInfo> GetAllRoleAndRes();
+        
     }
 }

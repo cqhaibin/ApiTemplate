@@ -25,7 +25,7 @@ namespace BAccurate.AppService.Implement
         public ResultDataInfo<LoginResultInfo> Login(LoginInfo info, RequestClientInfo clientInfo, string token = "")
         {
             int userId = 1;
-            var onlineUser = new UserEntity(userId, this.readAuthRepository, clientInfo);
+            var onlineUser = new UserEntity(userId, this.readAuthRepository, clientInfo, this.onlineUserMgr);
             if (this.onlineUserMgr.Get(userId) != null)
             {
                 this.onlineUserMgr.Remove(userId);

@@ -50,12 +50,14 @@
     <Compile Include="AppServices\ITestService.cs" />
     <Compile Include="BAccurateConfig.cs" />
     <Compile Include="Domain\IReadAuthRepository.cs" />
+    <Compile Include="Domain\IRoleAndResDepend.cs" />
     <Compile Include="Domain\ITokenRepository.cs" />
     <Compile Include="Domain\IOnlineUserMgr.cs" />
     <Compile Include="Domain\IUserEntity.cs" />
     <Compile Include="Domain\TokenEntity.cs" />
     <Compile Include="Models\Auth\LoginInfo.cs" />
     <Compile Include="Models\Auth\LoginResultInfo.cs" />
+    <Compile Include="Models\Auth\ResourceInfo.cs" />
     <Compile Include="Models\Auth\UserAuthOption.cs" />
     <Compile Include="Models\BaseQuery.cs" />
     <Compile Include="Models\RequestClientInfo.cs" />

@@ -60,7 +60,6 @@
     <Compile Include="AuthAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="S_StaffinfoService.cs" />
-    <Compile Include="TestService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BAccurate.Implement\BAccurate.Implement.csproj">

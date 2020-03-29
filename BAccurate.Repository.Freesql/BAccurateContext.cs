@@ -39,8 +39,8 @@ namespace BAccurate.Repository.Freesql
             {
                 cfg.Name("T_Tokens");
                 cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
-                cfg.Property(m => m.ClientInfo).DbType("nvarchar(max)");
-                cfg.Property(m => m.UserInfo).DbType("nvarchar(max)");
+                cfg.Property(m => m.ClientInfo).StringLength(-1);
+                cfg.Property(m => m.UserInfo).StringLength(-1);
             });
         }
     }

@@ -39,6 +39,19 @@ namespace BAccurate.Implement.Domain
             this.Token = this.GetMd5(tokenstr);
         }
 
+        public UserEntity(TokenEntity tokenEntity,
+            IReadAuthRepository readAuthRepository, IOnlineUserMgr onlineUserMgr)
+        {
+            this.UserInfo = tokenEntity.UserInfo;
+            this.readAuthRepository = readAuthRepository;
+            this.onlineUserMgr = onlineUserMgr;
+            this.Option = new UserAuthOption();
+            this.ClientInfo = tokenEntity.ClientInfo;
+            this.LoginTime = tokenEntity.LoginTime;
+            this.ExpiredTime = tokenEntity.ExpiredTime;
+            this.Token = tokenEntity.Token;
+        }
+
         
         public UserInfo UserInfo { get; protected set; }
 
@@ -59,7 +72,8 @@ namespace BAccurate.Implement.Domain
                 ClientInfo = ClientInfo,
                 UserInfo = UserInfo,
                 LoginTime = LoginTime,
-                ExpiredTime = ExpiredTime
+                ExpiredTime = ExpiredTime,
+                Token = this.Token
             };
         }
 

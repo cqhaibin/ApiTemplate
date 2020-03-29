@@ -3,6 +3,9 @@ using AutoMapper;
 using BAccurate.Repository.Freesql.Entities;
 using BAccurate.Repository.Freesql.Auth.Entities;
 using BAccurate.Domain;
+using Newtonsoft.Json;
+using BAccurate.Models.Auth;
+using BAccurate.Models;
 
 namespace BAccurate.WebApi.Framework
 {
@@ -22,10 +25,14 @@ namespace BAccurate.WebApi.Framework
         {
             return new MapperConfiguration(x =>
             {
-                x.CreateMap<TokendbEntity, TokenEntity>();
+                var tokenToEntity = x.CreateMap<TokendbEntity, TokenEntity>();
+                tokenToEntity.ForMember(m => m.UserInfo, (f => f.MapFrom(m => JsonConvert.DeserializeObject<UserInfo>(m.UserInfo))));
+                tokenToEntity.ForMember(m => m.ClientInfo, (f => f.MapFrom(m => JsonConvert.DeserializeObject<RequestClientInfo>(m.ClientInfo))));
                 var tokenTodbEntity = x.CreateMap<TokenEntity, TokendbEntity>();
                 tokenTodbEntity.ForMember(m => m.Ip, (f => f.MapFrom(m => m.ClientInfo.IP)));
                 tokenTodbEntity.ForMember(m => m.UserId, (f => f.MapFrom(m => m.UserInfo.Id)));
+                tokenTodbEntity.ForMember(m => m.ClientInfo, (f => f.MapFrom(m => JsonConvert.SerializeObject(m.ClientInfo))));
+                tokenTodbEntity.ForMember(m => m.UserInfo, (f => f.MapFrom(m => JsonConvert.SerializeObject(m.UserInfo))));
             });
         }
     }

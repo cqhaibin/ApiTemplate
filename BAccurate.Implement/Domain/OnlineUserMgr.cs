@@ -92,8 +92,9 @@ namespace BAccurate.Implement.Domain
                 this.dicUsers.Clear();
                 foreach(var token in tokens)
                 {
-                    //todo: clientInfo
-                    
+                    //todo: create userEntity
+                    UserEntity userEntity = new UserEntity(token, this.readAuthRepository, this);
+                    this.dicUsers.Add(userEntity.Token, userEntity);
                 }
             }
         }
@@ -130,7 +131,11 @@ namespace BAccurate.Implement.Domain
             {
                 foreach (var item in ls)
                 {
-                    this.dicUsers.Remove(item.Token);
+                    if (!item.Verify())
+                    {
+                        //todo 自动移除过期的在线用户，要打不同的标记
+                        this.Remove(item.Token);
+                    }
                 }
             }
         }

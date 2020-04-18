@@ -27,5 +27,30 @@ namespace BAccurate.AppServices
         /// </summary>
         /// <returns></returns>
         ResultInfo Logout(string token);
+
+        ResultListInfo<MenuInfo> GetMenus(string token);
+
+        /// <summary>
+        /// 获取用户资源
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        ResultDataInfo<IdentityInfo> GetIdentity(string token);
+        /// <summary>
+        /// 获取用户资源
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="resourceCode">顶级资源的Id</param>
+        /// <returns></returns>
+        ResultDataInfo<IdentityInfo> GetIdentity(string token, string resourceCode);
+
+        ResultInfo Verify(string token);
+        ResultInfo Verify(string token, string resCode);
+
+        /// <summary>
+        /// 重新Loadcache数据
+        /// </summary>
+        /// <returns></returns>
+        ResultDataInfo<bool> ReLoadCache();
     }
 }

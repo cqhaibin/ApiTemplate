@@ -35,5 +35,9 @@ namespace BAccurate.Domain
         bool Verify();
 
         bool Verify(string resCode);
+
+        IList<ResourceInfo> GetRes();
+
+        IList<MenuInfo> GetMenuTree();
     }
 }

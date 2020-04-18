@@ -1,24 +1,12 @@
-﻿using FreeSql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BAccurate.Repository.Freesql.Entities;
-using BAccurate.Domain;
-using SAM.Framework;
+﻿using BAccurate.Domain;
 using BAccurate.Repository.Freesql.Auth.Entities;
+using BAccurate.Repository.Freesql.Entities;
+using FreeSql;
+using SAM.Framework;
+using System;
 
 namespace BAccurate.Repository.Freesql
 {
-    /*
-     freeSql.CodeFirst.ConfigEntity<TestEntity>(cfg =>
-    {
-        cfg.Name("T_Test");
-        cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
-        cfg.Property(m => m.Name).DbType("nvarchar(100)").IsNullable(true);
-    });
-     */
     public class BAccurateContext : DbContext
     {
         public BAccurateContext(IFreeSql freeSql, IFMapper fMapper) : base(freeSql, null)
@@ -28,6 +16,21 @@ namespace BAccurate.Repository.Freesql
 
         public ITokenRepository TokenRepository { get; protected set; }
 
+        public DbSet<ResourceEntity> ResourceRepository;
+
+        public DbSet<RoleEntity> RoleRepository;
+
+        public DbSet<RoleResourceRelationEntity> RoleResRepository { get; set; }
+
+        public DbSet<UserEntity> UserRepository { get; set; }
+
+        public DbSet<UserRoleRelationEntity> UserRoleRepository { get; set; }
+
+
+        public void Transaction(Action action)
+        {
+            this.Orm.Transaction(action);
+        }
 
         /// <summary>
         /// 写db与实体的映射配置
@@ -41,6 +44,32 @@ namespace BAccurate.Repository.Freesql
                 cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
                 cfg.Property(m => m.ClientInfo).StringLength(-1);
                 cfg.Property(m => m.UserInfo).StringLength(-1);
+            });
+            freeSql.CodeFirst.ConfigEntity<ResourceEntity>((cfg) =>
+            {
+                cfg.Name("T_Resources");
+                cfg.Property(m => m.Config).StringLength(-1);
+            });
+            freeSql.CodeFirst.ConfigEntity<RoleEntity>((cfg) =>
+            {
+                cfg.Name("T_Roles");
+                cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
+            });
+            freeSql.CodeFirst.ConfigEntity<RoleResourceRelationEntity>((cfg) =>
+            {
+                cfg.Name("T_RoleResRelations");
+                cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
+            });
+            freeSql.CodeFirst.ConfigEntity<UserEntity>((cfg) =>
+            {
+                cfg.Name("T_Users");
+                cfg.Property(m => m.Config).StringLength(-1);
+                cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
+            });
+            freeSql.CodeFirst.ConfigEntity<UserRoleRelationEntity>((cfg) =>
+            {
+                cfg.Name("T_UserRoles");
+                cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
             });
         }
     }

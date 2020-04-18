@@ -8,7 +8,7 @@ namespace BAccurate.Models.Auth
 {
     public class ResourceInfo
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string ResourceCode {get;set;}
         public string ResourceName { get; set; }
         public string Url { get; set; }
@@ -17,11 +17,12 @@ namespace BAccurate.Models.Auth
         /// </summary>
         public int ResourceType { get; set; }
         public bool Enable { get; set; }
-        public int ParentId { get; set; }
+        public string ParentId { get; set; }
         /// <summary>
         /// 扩展字段：json字符串
         /// </summary>
         public string Config { get; set; }
+        public int OrderNum { get; set; }
     }
 
     /// <summary>

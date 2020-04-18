@@ -66,7 +66,12 @@
     <Compile Include="BAccurateContext.cs" />
     <Compile Include="BAccurateDbContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\ResourceEntity.cs" />
+    <Compile Include="Entities\RoleEntity.cs" />
+    <Compile Include="Entities\RoleResourceRelationEntity.cs" />
     <Compile Include="Entities\S_StaffinfoEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Entities\UserRoleRelationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

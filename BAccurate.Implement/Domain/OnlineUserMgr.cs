@@ -54,6 +54,11 @@ namespace BAccurate.Implement.Domain
             return profiles.FirstOrDefault(m => m.UserInfo.Id == userId);
         }
 
+        public IUserEntity Get(string token)
+        {
+            return this.dicUsers.ContainsKey(token) ? this.dicUsers[token] : null;
+        }
+
         public IList<IUserEntity> GetAll()
         {
             return this.dicUsers.Values.ToList();

@@ -2,7 +2,6 @@
 {
     public class RoleResourceRelationEntity:BaseEntity<int>
     {
-        public int Id { get; set; }
 
         public int RoleId { get; set; }
 

@@ -1,13 +1,11 @@
 ﻿using BAccurate.Enums;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BAccurate.Repository.Freesql.Entities
 {
     public class UserEntity:BaseEntity<int>
-    {
-        /// <summary>
-        /// 用户ID
-        /// </summary>
-        public int Id { get; set; }
+    { 
         /// <summary>
         /// 用户帐号
         /// </summary>
@@ -45,6 +43,7 @@ namespace BAccurate.Repository.Freesql.Entities
         /// 扩展配置
         /// </summary>
         public string Config { get; set; }
+
  
     }
 }

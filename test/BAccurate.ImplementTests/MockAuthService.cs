@@ -41,14 +41,14 @@ namespace BAccurate.ImplementTests
             {
                 new Models.Auth.ResourceInfo()
                 {
-                  Id = 1,
+                  Id = "1",
                   ResourceCode="login",
                   ResourceName="登入",
                   ResourceType=1,
                   Url="/api/Auth/PostLogin"
                 },new Models.Auth.ResourceInfo()
                 {
-                  Id = 2,
+                  Id = "2",
                   ResourceCode="loginOut",
                   ResourceName="登出",
                   ResourceType=1,
@@ -60,17 +60,17 @@ namespace BAccurate.ImplementTests
                 new Models.Auth.RoleAndResInfo()
                 {
                     ResourceCode="login",
-                    ResurceId=1,
+                    ResourceId="1",
                     RoleId=1
                 },new Models.Auth.RoleAndResInfo()
                 {
                     ResourceCode="loginOut",
-                    ResurceId=2,
+                    ResourceId="2",
                     RoleId=1
                 },new Models.Auth.RoleAndResInfo()
                 {
                     ResourceCode="login",
-                    ResurceId=1,
+                    ResourceId="1",
                     RoleId=2
                 }
             };

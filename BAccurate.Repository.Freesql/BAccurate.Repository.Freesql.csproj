@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Auth\Entities\TokendbEntity.cs" />
     <Compile Include="Auth\ReadAuthRepository.cs" />
+    <Compile Include="Auth\RoleAndResDependRepository.cs" />
     <Compile Include="Auth\TokenRepository.cs" />
     <Compile Include="BAccurateContext.cs" />
     <Compile Include="BAccurateDbContext.cs" />

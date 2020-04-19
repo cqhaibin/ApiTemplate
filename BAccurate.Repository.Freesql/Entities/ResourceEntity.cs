@@ -4,8 +4,7 @@ using System;
 namespace BAccurate.Repository.Freesql.Entities
 {
     public class ResourceEntity:BaseEntity<string>
-    {
-        public string Id { get; set; }
+    { 
 
         public string PId { get; set; }
 

@@ -39,8 +39,8 @@ namespace BAccurate.WebApi.Framework
             builder.RegisterInstance(freeSql).SingleInstance();
             BAccurateContext.Fluent(freeSql);
             builder.RegisterType<BAccurateContext>().InstancePerLifetimeScope();
-            List<NamedParameter> parameters = new List<NamedParameter>();
 
+            List<NamedParameter> parameters = new List<NamedParameter>();
             IFreeSql nfrs = new FreeSql.FreeSqlBuilder()
                 .UseConnectionString(FreeSql.DataType.SqlServer, cfg.AccurateConn)
                 .UseAutoSyncStructure(true)

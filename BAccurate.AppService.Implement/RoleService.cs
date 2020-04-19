@@ -57,12 +57,9 @@ namespace BAccurate.AppService.Implement
             ResultInfo result = null;
             try
             {
-                dbContext.Transaction(() =>
-                {
-                    this.dbContext.RoleRepository.Remove(m => m.Id == id);
-                    this.dbContext.RoleResRepository.Remove(m => m.RoleId == id);
-                    this.dbContext.SaveChanges();
-                });
+                this.dbContext.RoleRepository.Remove(m => m.Id == id);
+                this.dbContext.RoleResRepository.Remove(m => m.RoleId == id);
+                this.dbContext.SaveChanges();
                 result = new ResultInfo();
 
             }
@@ -83,35 +80,31 @@ namespace BAccurate.AppService.Implement
             {
                 int roleId;
                 var roleEntity = this.mapper.Map<RoleEntity>(param);
-                this.dbContext.Transaction(() =>
+                if (roleEntity.Id == 0)
                 {
-                    if (roleEntity.Id == 0)
+                    //insert
+                    this.dbContext.RoleRepository.Add(roleEntity);
+                }
+                else
+                {
+                    //update
+                    this.dbContext.RoleRepository.Update(roleEntity);
+                }
+                roleId = roleEntity.Id;
+                if (param.Resources != null)
+                {
+                    this.dbContext.RoleResRepository.Remove(m => m.RoleId == roleId);
+                    foreach (var r in param.Resources)
                     {
-                        //insert
-                        this.dbContext.RoleRepository.Add(roleEntity);
-                    }
-                    else
-                    {
-                        //update
-                        this.dbContext.RoleRepository.Update(roleEntity);
-                    }
-                    this.dbContext.SaveChanges();
-                    roleId = roleEntity.Id;
-                    if (param.Resources != null)
-                    {
-                        this.dbContext.RoleResRepository.Remove(m => m.RoleId == roleId);
-                        foreach (var r in param.Resources)
+                        this.dbContext.RoleResRepository.Add(new RoleResourceRelationEntity()
                         {
-                            this.dbContext.RoleResRepository.Add(new RoleResourceRelationEntity()
-                            {
-                                ResourceId = r.Id,
-                                Status = r.Status,
-                                RoleId = roleId
-                            });
-                        }
+                            ResourceId = r.Id,
+                            Status = r.Status,
+                            RoleId = roleId
+                        });
                     }
-                    this.dbContext.SaveChanges();
-                });
+                }
+                this.dbContext.SaveChanges();
                 result = new ResultInfo();
             }
             catch (Exception ex)

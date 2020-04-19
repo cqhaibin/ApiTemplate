@@ -39,9 +39,12 @@ namespace BAccurate.AppService.Implement
         public ResultDataInfo<string> Save(ResourceInfo info)
         {
             var entity = this.mapper.Map<ResourceEntity>(info);
-            if (string.IsNullOrEmpty(info.Id))
+            if (string.IsNullOrEmpty(info.Id) || this.dbContext.ResourceRepository.Select.Where(m => m.Id == info.Id).ToOne() == null)
             {
-                entity.Id = Guid.NewGuid().ToString("N");
+                if (string.IsNullOrEmpty(info.Id))
+                {
+                    entity.Id = Guid.NewGuid().ToString("N");
+                }
                 this.dbContext.ResourceRepository.Add(entity);
             }
             else

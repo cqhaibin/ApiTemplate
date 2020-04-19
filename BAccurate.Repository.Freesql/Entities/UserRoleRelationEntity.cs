@@ -2,8 +2,7 @@
 {
     public class UserRoleRelationEntity:BaseEntity<int>
     {
-
-        public int Id { get; set; }
+         
 
         public int UserId { get; set; }
 

@@ -31,7 +31,7 @@ namespace BAccurate.Models.Auth
     public class RoleAndResInfo
     {
 
-        public int ResurceId { get; set; }
+        public string ResourceId { get; set; }
 
         public string ResourceCode { get; set; }
 

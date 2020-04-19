@@ -1,11 +1,7 @@
 ﻿namespace BAccurate.Repository.Freesql.Entities
 {
     public class RoleEntity:BaseEntity<int>
-    {
-        /// <summary>
-        /// ID
-        /// </summary>
-        public int Id { get; set; }
+    { 
         /// <summary>
         /// 角色名称
         /// </summary>

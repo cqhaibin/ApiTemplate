@@ -16,22 +16,19 @@ namespace BAccurate.Repository.Freesql
 
         public ITokenRepository TokenRepository { get; protected set; }
 
-        public DbSet<ResourceEntity> ResourceRepository;
+        public DbSet<ResourceEntity> ResourceRepository { get; set; }
 
-        public DbSet<RoleEntity> RoleRepository;
+        public DbSet<RoleEntity> RoleRepository { get; set; }
 
         public DbSet<RoleResourceRelationEntity> RoleResRepository { get; set; }
+
+        public DbSet<RoleResourceRelationPlusEntity> RoleResPlusRepository { get; set; }
 
         public DbSet<UserEntity> UserRepository { get; set; }
 
         public DbSet<UserRoleRelationEntity> UserRoleRepository { get; set; }
 
-
-        public void Transaction(Action action)
-        {
-            this.Orm.Transaction(action);
-        }
-
+         
         /// <summary>
         /// 写db与实体的映射配置
         /// </summary>
@@ -60,11 +57,16 @@ namespace BAccurate.Repository.Freesql
                 cfg.Name("T_RoleResRelations");
                 cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
             });
+            freeSql.CodeFirst.ConfigEntity<RoleResourceRelationPlusEntity>((cfg) =>
+            {
+                cfg.Name("T_RoleResRelations");
+                cfg.DisableSyncStructure(true);
+            });
             freeSql.CodeFirst.ConfigEntity<UserEntity>((cfg) =>
             {
                 cfg.Name("T_Users");
-                cfg.Property(m => m.Config).StringLength(-1);
                 cfg.Property(m => m.Id).IsIdentity(true).IsPrimary(true);
+                cfg.Property(m => m.Config).StringLength(-1);
             });
             freeSql.CodeFirst.ConfigEntity<UserRoleRelationEntity>((cfg) =>
             {

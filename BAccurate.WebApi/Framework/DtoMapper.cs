@@ -6,6 +6,7 @@ using BAccurate.Domain;
 using Newtonsoft.Json;
 using BAccurate.Models.Auth;
 using BAccurate.Models;
+using BAccurate.Models.Role;
 
 namespace BAccurate.WebApi.Framework
 {
@@ -33,6 +34,22 @@ namespace BAccurate.WebApi.Framework
                 tokenTodbEntity.ForMember(m => m.UserId, (f => f.MapFrom(m => m.UserInfo.Id)));
                 tokenTodbEntity.ForMember(m => m.ClientInfo, (f => f.MapFrom(m => JsonConvert.SerializeObject(m.ClientInfo))));
                 tokenTodbEntity.ForMember(m => m.UserInfo, (f => f.MapFrom(m => JsonConvert.SerializeObject(m.UserInfo))));
+                x.CreateMap<UserEntity, UserInfo>();
+                x.CreateMap<ResourceEntity, ResourceInfo>();
+                x.CreateMap<RoleResourceRelationPlusEntity, RoleAndResInfo>();
+
+                x.DoubleMap<Models.Resource.ResourceInfo, ResourceEntity>();
+                x.CreateMap<RoleEntity, RoleInfo>();
+                x.CreateMap<RoleParam, RoleEntity>();
+                var resRoleMap = x.CreateMap<ResourceEntity, ResourceInfoOfRole>();
+                resRoleMap.ForMember(m => m.Name, opt => opt.MapFrom(r => r.ResourceName));
+                resRoleMap.ForMember(m => m.ParentId, opt => opt.MapFrom(r => r.PId));
+
+                x.CreateMap<UserEntity, Models.User.UserInfo>();
+                x.CreateMap<Models.User.UserParam, UserEntity>();
+                var roleUserMap = x.CreateMap<RoleEntity, Models.User.RoleInfoOfUser>();
+                roleUserMap.ForMember(m => m.Id, opt => opt.MapFrom(r => r.Id));
+                roleUserMap.ForMember(m => m.RoleName, opt => opt.MapFrom(r => r.RoleName));
             });
         }
     }

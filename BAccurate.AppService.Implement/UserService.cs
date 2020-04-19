@@ -56,13 +56,10 @@ namespace BAccurate.AppService.Implement
         {
             ResultInfo result = null;
             try
-            {
-                this.dbContext.Transaction(() =>
-                {
-                    this.dbContext.UserRepository.Remove(m => m.Id == id);
-                    this.dbContext.UserRoleRepository.Remove(m => m.UserId == id);
-                    this.dbContext.SaveChanges();
-                });
+            { 
+                this.dbContext.UserRepository.Remove(m => m.Id == id);
+                this.dbContext.UserRoleRepository.Remove(m => m.UserId == id);
+                this.dbContext.SaveChanges();
                 result = new ResultInfo();
             }
             catch(Exception ex)
@@ -90,39 +87,35 @@ namespace BAccurate.AppService.Implement
                         ResultCode = OcmStatusCode.USER_ALREADY_EXIST,
                         IsSuccess = false
                     };
-                }
-                this.dbContext.Transaction(() =>
+                } 
+                if (entity.Id == 0)
                 {
-                    if (entity.Id == 0)
+                    entity.Password = "123456";
+                    //insert
+                    this.dbContext.UserRepository.Add(entity);
+                }
+                else
+                {
+                    var oldEntity = this.dbContext.UserRepository.Select.Where(m => m.Id == entity.Id).ToOne();
+                    entity.UserName = oldEntity.UserName;
+                    entity.Password = oldEntity.Password;
+                    //update
+                    this.dbContext.UserRepository.Update(entity);
+                }
+                userId = entity.Id;
+                if (param.Roles != null)
+                {
+                    this.dbContext.UserRoleRepository.Remove(m => m.UserId == userId); //根据userid删除与角色的关联
+                    foreach (var role in param.Roles)
                     {
-                        entity.Password = "123456";
-                        //insert
-                        this.dbContext.UserRepository.Add(entity);
-                    }
-                    else
-                    {
-                        var oldEntity = this.dbContext.UserRepository.Select.Where(m => m.Id == entity.Id).ToOne();
-                        entity.UserName = oldEntity.UserName;
-                        entity.Password = oldEntity.Password;
-                        //update
-                        this.dbContext.UserRepository.Update(entity);
-                    }
-                    this.dbContext.SaveChanges();
-                    userId = entity.Id;
-                    if (param.Roles != null)
-                    {
-                        this.dbContext.UserRoleRepository.Remove(m => m.UserId == userId); //根据userid删除与角色的关联
-                        foreach (var role in param.Roles)
+                        this.dbContext.UserRoleRepository.Add(new UserRoleRelationEntity()
                         {
-                            this.dbContext.UserRoleRepository.Add(new UserRoleRelationEntity()
-                            {
-                                RoleId = role,
-                                UserId = userId
-                            });
-                        }
+                            RoleId = role,
+                            UserId = userId
+                        });
                     }
-                    this.dbContext.SaveChanges();
-                });
+                }
+                this.dbContext.SaveChanges();
                 result = new ResultInfo();
             }
             catch (Exception ex)

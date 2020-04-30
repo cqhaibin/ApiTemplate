@@ -14,7 +14,7 @@ namespace BAccurate.Repository.Freesql.Auth
     {
         private IFMapper fMapper;
         private IFreeSql freeSql;
-        private BaseRepository<TokendbEntity> repository;
+        private IBaseRepository<TokendbEntity> repository;
         public TokenRepository(IFreeSql freeSql, IFMapper fMapper)
         {
             this.fMapper = fMapper;
@@ -24,15 +24,25 @@ namespace BAccurate.Repository.Freesql.Auth
 
         public IList<TokenEntity> GetAllTokens()
         {
-            var ls = this.repository.Select.ToList();
+            var ls = this.repository.Select.Where(m => m.IsLogin).ToList();
             return this.fMapper.Map<IList<TokenEntity>>(ls);
         }
 
         public void InsertToken(TokenEntity entity, bool isLogin = true)
         {
             var dbEntity = this.fMapper.Map<TokendbEntity>(entity);
-            dbEntity.IsLogin = isLogin;
-            this.repository.Insert(dbEntity);
+            var oldEnity = this.repository.Select.Where(m => m.Token == entity.Token && m.IsLogin).ToOne();
+            if (oldEnity != null)
+            {
+                oldEnity.IsLogin = false;
+                oldEnity.LogoutTime = DateTime.Now;
+                this.repository.Update(oldEnity);
+            }
+            else
+            {
+                dbEntity.IsLogin = true;
+                this.repository.Insert(dbEntity);
+            }
         }
     }
 }

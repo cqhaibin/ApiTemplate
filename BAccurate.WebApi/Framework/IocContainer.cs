@@ -27,26 +27,29 @@ namespace BAccurate.WebApi.Framework
         {
             var builder = new ContainerBuilder();
             var cfg = CreateCfg();
-            
+
             builder.RegisterInstance(cfg).SingleInstance();
 
             #region 注册freesql
 
-            IFreeSql freeSql = new FreeSql.FreeSqlBuilder()
-                .UseConnectionString(FreeSql.DataType.SqlServer, cfg.AccurateConn)
-                .UseAutoSyncStructure(true)
-                .Build();
+            var build = new FreeSql.FreeSqlBuilder();
+            if (cfg.DbType == ConstCfg.DbType_MSsql)
+            {
+                build = build.UseConnectionString(FreeSql.DataType.SqlServer, cfg.AccurateConn);
+            }
+            else if (cfg.DbType == ConstCfg.DbType_Sqlite)
+            {
+                build = build.UseConnectionString(FreeSql.DataType.Sqlite, cfg.AccurateConn);
+            }
+            else if (cfg.DbType == ConstCfg.DbType_Mysql)
+            {
+                build = build.UseConnectionString(FreeSql.DataType.MySql, cfg.AccurateConn);
+            }
+            IFreeSql freeSql = build.UseAutoSyncStructure(false)
+             .Build();
             builder.RegisterInstance(freeSql).SingleInstance();
             BAccurateContext.Fluent(freeSql);
             builder.RegisterType<BAccurateContext>().InstancePerLifetimeScope();
-            List<NamedParameter> parameters = new List<NamedParameter>();
-
-            IFreeSql nfrs = new FreeSql.FreeSqlBuilder()
-                .UseConnectionString(FreeSql.DataType.SqlServer, cfg.AccurateConn)
-                .UseAutoSyncStructure(true)
-                .Build();
-            BAccurateDbContext.Fluent(nfrs);
-            builder.RegisterType<BAccurateDbContext>().WithParameter(new NamedParameter("freeSql", nfrs) { });
 
             #endregion
 
@@ -85,7 +88,8 @@ namespace BAccurate.WebApi.Framework
         public static BAccurateConfig CreateCfg()
         {
             var cfg = new BAccurateConfig();
-            cfg.AccurateConn = ConfigurationManager.ConnectionStrings["accConn"].ConnectionString;
+            cfg.AccurateConn = ConfigurationManager.ConnectionStrings["ocmConn"].ConnectionString;
+            cfg.DbType = ConfigurationManager.AppSettings["dbType"].Trim();
             return cfg;
         }
     }

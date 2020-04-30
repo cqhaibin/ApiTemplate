@@ -24,6 +24,7 @@ namespace BAccurate.WebApi.Controllers
         /// <param name="info"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public ResultDataInfo<LoginResultInfo> PostLogin([FromBody]LoginInfo info)
         {
             return this.authAppService.Login(info, Utils.Common.GetClientInfo(), Utils.Common.GetToken());
@@ -37,6 +38,44 @@ namespace BAccurate.WebApi.Controllers
         public ResultInfo LoginOut()
         {
             return this.authAppService.Logout(Utils.Common.GetToken());
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ResultInfo Verify()
+        {
+            return this.authAppService.Verify(Utils.Common.GetToken());
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ResultInfo Verify([FromUri]string res)
+        {
+            return this.authAppService.Verify(Utils.Common.GetToken(), res);
+        }
+
+        [HttpGet]
+        public ResultListInfo<MenuInfo> GetMenus()
+        {
+            return this.authAppService.GetMenus(Utils.Common.GetToken());
+        }
+
+        [HttpGet]
+        public ResultDataInfo<IdentityInfo> GetIdentity()
+        {
+            return this.authAppService.GetIdentity(Utils.Common.GetToken());
+        }
+
+        [HttpGet]
+        public ResultDataInfo<IdentityInfo> GetIdentity([FromUri]string resCode)
+        {
+            return this.authAppService.GetIdentity(Utils.Common.GetToken(), resCode);
+        }
+
+        [HttpGet]
+        public ResultDataInfo<bool> ReLoad()
+        {
+            return this.authAppService.ReLoadCache();
         }
     }
 }

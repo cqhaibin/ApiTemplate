@@ -13,6 +13,7 @@ namespace BAccurate.WebApi
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             Framework.IocContainer.Builder();
+            GlobalConfiguration.Configuration.Filters.Add(new Extends.AuthFilterAttribute());
         }
     }
 }

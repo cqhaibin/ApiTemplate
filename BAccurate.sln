@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAccurate.AppService.Implem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAccurate.WebApi", "BAccurate.WebApi\BAccurate.WebApi.csproj", "{CFDB444B-BBA6-4309-8764-5197669E25FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CCDCA805-CCF7-4DC5-AB1F-6F6A16051244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAccurate.ImplementTests", "test\BAccurate.ImplementTests\BAccurate.ImplementTests.csproj", "{8AB42A99-6767-442F-900C-41E9712A27F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,16 @@ Global
 		{CFDB444B-BBA6-4309-8764-5197669E25FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFDB444B-BBA6-4309-8764-5197669E25FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFDB444B-BBA6-4309-8764-5197669E25FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB42A99-6767-442F-900C-41E9712A27F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB42A99-6767-442F-900C-41E9712A27F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB42A99-6767-442F-900C-41E9712A27F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB42A99-6767-442F-900C-41E9712A27F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AB42A99-6767-442F-900C-41E9712A27F5} = {CCDCA805-CCF7-4DC5-AB1F-6F6A16051244}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA94402C-9574-49F4-865D-0231DC946CF9}

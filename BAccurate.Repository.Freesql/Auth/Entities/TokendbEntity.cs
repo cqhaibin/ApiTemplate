@@ -12,6 +12,8 @@ namespace BAccurate.Repository.Freesql.Auth.Entities
 
         public string Ip { get; set; }
 
+        public string Token { get; set; }
+
         public bool IsLogin { get; set; }
 
         public int UserId { get; set; }
@@ -19,6 +21,8 @@ namespace BAccurate.Repository.Freesql.Auth.Entities
         public string UserInfo { get; set; }
 
         public string ClientInfo { get; set; }
+
+        public DateTime LogoutTime { get; set; }
 
         public DateTime LoginTime { get; set; }
 

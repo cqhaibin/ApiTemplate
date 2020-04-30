@@ -31,5 +31,13 @@ namespace BAccurate.Domain
         UserAuthOption Option { get; }
 
         TokenEntity GetTokenEntity();
+
+        bool Verify();
+
+        bool Verify(string resCode);
+
+        IList<ResourceInfo> GetRes();
+
+        IList<MenuInfo> GetMenuTree();
     }
 }

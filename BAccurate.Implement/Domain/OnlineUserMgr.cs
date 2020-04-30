@@ -5,20 +5,32 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BAccurate.Domain;
+using BAccurate.Models.Auth;
 
 namespace BAccurate.Implement.Domain
 {
     public class OnlineUserMgr : IOnlineUserMgr
     {
         protected Dictionary<string, IUserEntity> dicUsers = new Dictionary<string, IUserEntity>();
+        /// <summary>
+        /// 资源缓存池
+        /// </summary>
+        protected List<Models.Auth.ResourceInfo> resList = new List<Models.Auth.ResourceInfo>();
+        /// <summary>
+        /// 资源与角色关系的缓存
+        /// </summary>
+        protected List<Models.Auth.RoleAndResInfo> roleAndResList = new List<Models.Auth.RoleAndResInfo>();
         protected ITokenRepository tokenRepository;
-        IReadAuthRepository readAuthRepository;
+        protected IReadAuthRepository readAuthRepository;
+        protected IRoleAndResDepend roleAndResDepend;
         private object objLock = new object();
 
-        public OnlineUserMgr(ITokenRepository tokenRepository, IReadAuthRepository readAuthRepository)
+        public OnlineUserMgr(ITokenRepository tokenRepository, 
+            IReadAuthRepository readAuthRepository, IRoleAndResDepend roleAndResDepend)
         {
             this.tokenRepository = tokenRepository;
             this.readAuthRepository = readAuthRepository;
+            this.roleAndResDepend = roleAndResDepend;
             this.Load();
             Task.Factory.StartNew(() =>
             {
@@ -42,21 +54,52 @@ namespace BAccurate.Implement.Domain
             return profiles.FirstOrDefault(m => m.UserInfo.Id == userId);
         }
 
+        public IUserEntity Get(string token)
+        {
+            return this.dicUsers.ContainsKey(token) ? this.dicUsers[token] : null;
+        }
+
         public IList<IUserEntity> GetAll()
         {
             return this.dicUsers.Values.ToList();
         }
 
+        public List<ResourceInfo> GetAllRes()
+        {
+            return this.resList;
+        }
+
+        public List<RoleAndResInfo> GetAllRoleAndRes()
+        {
+            return this.roleAndResList;
+        }
+
         public void Load()
         {
+            #region 加载依赖数据
+
+            var resTmpls = this.roleAndResDepend.GetAllResourceInfos();
+            var roleAndResTmpls = this.roleAndResDepend.GetAllRoleAndRes();
+
+            lock (this.objLock)
+            {
+                this.resList.Clear();
+                this.roleAndResList.Clear();
+                this.resList = resTmpls;
+                this.roleAndResList = roleAndResTmpls;
+            }
+
+            #endregion
+
             var tokens = this.tokenRepository.GetAllTokens();
             if (tokens != null)
             {
                 this.dicUsers.Clear();
                 foreach(var token in tokens)
                 {
-                    //todo: clientInfo
-                    
+                    //todo: create userEntity
+                    UserEntity userEntity = new UserEntity(token, this.readAuthRepository, this);
+                    this.dicUsers.Add(userEntity.Token, userEntity);
                 }
             }
         }
@@ -93,7 +136,11 @@ namespace BAccurate.Implement.Domain
             {
                 foreach (var item in ls)
                 {
-                    this.dicUsers.Remove(item.Token);
+                    if (!item.Verify())
+                    {
+                        //todo 自动移除过期的在线用户，要打不同的标记
+                        this.Remove(item.Token);
+                    }
                 }
             }
         }

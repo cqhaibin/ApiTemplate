@@ -10,6 +10,7 @@ namespace BAccurate.Domain
 {
     public class TokenEntity
     {
+        public string Token { get; set; }
         public RequestClientInfo ClientInfo { get; set; }
 
         public UserInfo UserInfo { get; set; }

@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CCDCA805-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAccurate.ImplementTests", "test\BAccurate.ImplementTests\BAccurate.ImplementTests.csproj", "{8AB42A99-6767-442F-900C-41E9712A27F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleWebApi", "ConsoleWebApi\ConsoleWebApi.csproj", "{A778E454-1D14-49A7-8EF6-1FF8B24016FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{8AB42A99-6767-442F-900C-41E9712A27F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AB42A99-6767-442F-900C-41E9712A27F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AB42A99-6767-442F-900C-41E9712A27F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

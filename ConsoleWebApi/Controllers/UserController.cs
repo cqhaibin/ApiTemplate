@@ -3,7 +3,7 @@ using BAccurate.Models.User;
 using SAM.Framework.Result;
 using System.Web.Http;
 
-namespace BAccurate.WebApi.Controllers
+namespace ConsoleWebApi.Controllers
 {
     public class UserController : BaseController
     {

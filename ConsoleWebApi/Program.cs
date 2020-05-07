@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.AspNet.SignalR;
 
 namespace ConsoleWebApi
 {
@@ -20,7 +21,7 @@ namespace ConsoleWebApi
     {
         static void Main(string[] args)
         {
-            using (WebApp.Start<StartUp>("http://localhost:9909"))
+            using (WebApp.Start<StartUp>("http://*:9909"))
             {
                 Console.WriteLine("start 9909...");
                 Console.ReadKey();
@@ -31,13 +32,13 @@ namespace ConsoleWebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            string rootPath = Path.Combine(Directory.GetCurrentDirectory(), "webroot");
+            string rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
             if (Directory.Exists(rootPath))
             {
                 app.UseStaticFiles(new StaticFileOptions()
                 {
                     FileSystem = new PhysicalFileSystem(rootPath),
-                    RequestPath = new PathString("/")
+                    RequestPath = new PathString("/root")
                 });
             }
 
@@ -62,6 +63,12 @@ namespace ConsoleWebApi
             Framework.IocContainer.Builder(httpConfiguratin);
             app.UseAutofacWebApi(httpConfiguratin);
             app.UseWebApi(httpConfiguratin);
+
+            //signalr 
+            app.Map("/wsc", map =>
+            {
+                map.RunSignalR(new HubConfiguration());
+            });
         }
     }
 }

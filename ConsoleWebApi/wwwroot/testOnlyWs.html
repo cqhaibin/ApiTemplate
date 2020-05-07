@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="log">
+
+    </div>
+    <script>
+        var ws = new WebSocket("ws://localhost:9909/wsc/connect?transport=webSockets&clientProtocol=1.4&connectionToken=AQAAANCMnd8BFdERjHoAwE%2FCl%2BsBAAAA1OOqK9vDuEW0d3lc%2F6Z%2BPgAAAAACAAAAAAAQZgAAAAEAACAAAAB56oMnChc5DQNhtqUyiv4g7IfZY80Utt3UPTAeLmsOMQAAAAAOgAAAAAIAACAAAACAgwWOpQkMR0nUSPvLi%2BlkeU%2BAgsBOrDP8iBxbhxCLPDAAAABON4dEDg8dHTiaYkFO3Of%2BNnVHt3AYag3cbrgFANPLBAgonYh49Bcm7UQJ7HArgZZAAAAA3v5GgjbWYJxLy6hu0Gyyc1WW8%2BqHUJZraWnLnvfic8baoD2QKN7pCGne6aTABt3nrwakLMBslFia6PIl7dOWYQ%3D%3D&connectionData=%5B%7B%22name%22%3A%22testhub%22%7D%5D&tid=3");
+        ws.onopen = function () {
+
+        }
+        ws.onerror = function (err) {
+            console.log(err);
+        }
+    </script>
+</body>
+</html>

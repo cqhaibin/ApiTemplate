@@ -14,6 +14,7 @@ using SAM.Framework;
 using Autofac.Core;
 using BAccurate.Implement.Domain;
 using BAccurate.Domain;
+using Autofac.Integration.SignalR;
 
 namespace ConsoleWebApi.Framework
 {
@@ -62,6 +63,8 @@ namespace ConsoleWebApi.Framework
                 .InstancePerDependency();
             #endregion
 
+
+            builder.RegisterHubs(AppDomain.CurrentDomain.GetAssemblies());
 
             //注册controller
             builder.RegisterApiControllers(allAssemblies);

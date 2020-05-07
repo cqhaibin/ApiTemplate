@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/jquery.signalR.js"></script>
+    <script src="/wsc/js"></script>
+</head>
+<body>
+    <div id="log">
+
+    </div>
+    <script>
+        var commonHub = $.connection.testHub;
+        var logDom = document.getElementById("log");
+        commonHub.client.sendMessage = function (msg) {
+            logDom.innerHTML = logDom.innerHTML + "<br/>" + msg;
+        }
+        $.connection.hub.start().done(function () {
+            debugger;
+        }).fail(function (err) {
+            console.log(err)
+        });
+    </script>
+</body>
+</html>

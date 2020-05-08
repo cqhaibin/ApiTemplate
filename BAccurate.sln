@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAccurate.ImplementTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleWebApi", "ConsoleWebApi\ConsoleWebApi.csproj", "{A778E454-1D14-49A7-8EF6-1FF8B24016FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppSignalrRClient", "test\ConsoleAppSignalrRClient\ConsoleAppSignalrRClient.csproj", "{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,12 +55,17 @@ Global
 		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A778E454-1D14-49A7-8EF6-1FF8B24016FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8AB42A99-6767-442F-900C-41E9712A27F5} = {CCDCA805-CCF7-4DC5-AB1F-6F6A16051244}
+		{0CA3ACD8-1021-484E-BAC5-DE65E3E0EA53} = {CCDCA805-CCF7-4DC5-AB1F-6F6A16051244}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA94402C-9574-49F4-865D-0231DC946CF9}

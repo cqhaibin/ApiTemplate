@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNet.SignalR;
+using Microsoft.Owin.Cors;
 
 namespace ConsoleWebApi
 {
@@ -67,6 +68,7 @@ namespace ConsoleWebApi
             //signalr 
             app.Map("/wsc", map =>
             {
+                map.UseCors(CorsOptions.AllowAll);
                 map.RunSignalR(new HubConfiguration());
             });
         }

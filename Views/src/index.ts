@@ -1,7 +1,5 @@
-﻿import * as Promise from 'bluebird';
+﻿
 import {use as Views} from './views';
-import axios from 'axios';
-import { Ocm, useInterecptor } from './core';
 
  //@ts-ignore
  if(DEBUG){
@@ -10,43 +8,14 @@ import { Ocm, useInterecptor } from './core';
         ocmApiUrl: '/ocm',
         locApiUrl: '/loc'
     }
-    //@ts-ignore
-    /*window.loginInfo = {
-        name: 'admin',
-        pwd: 'admin'
-    }*/
 }
 //注册easyui
 window.koeasyui.use(ko);
 
 Views();
 
-useInterecptor(axios, null)
-let ocm = new Ocm(window.webConfig.ocmApiUrl, axios)
-
 //测试组件
 let rootVm={
-    $core: {
-        ocm: ocm
-    },
-    $cfg:{
-        links: null
-    },
-    getLink: function(id){
-        const that = this;
-        return new Promise((resolve) => {
-            if (that.$cfg.links) {
-                const url = that.$cfg.links[id];
-                resolve(url);
-                return;
-            }
-            axios.get('/static/cfg/links.json').then((result) => {
-                that.$cfg.links = result.data;
-                const url = that.$cfg.links[id];
-                resolve(url);
-            })
-        })
-    },
     /**
      * 获取全局的弹出窗口
      */

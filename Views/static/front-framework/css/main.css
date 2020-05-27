@@ -3151,10 +3151,6 @@ html, body {
   line-height: 18px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .block-primary-dark {
   color: #f2f2f2;
   background-color: #2b85e4;
@@ -3319,50 +3315,6 @@ html, body {
 
 .padding-xxl {
   padding: 20px;
-}
-
-.sidemenu-dark .accordion {
-  background-color: #1e282c;
-  border-width: 0px;
-}
-.sidemenu-dark .accordion .accordion-header {
-  background-color: #1e282c;
-  border-color: transparent;
-}
-.sidemenu-dark .accordion .accordion-header .panel-title {
-  color: #b8c7ce;
-  height: 30px;
-  line-height: 30px;
-}
-.sidemenu-dark .accordion .accordion-header-border {
-  border-bottom-color: transparent;
-}
-.sidemenu-dark .accordion .accordion-header-selected .panel-title {
-  color: #fff;
-}
-.sidemenu-dark .accordion .panel-last > .accordion-body, .sidemenu-dark .accordion .panel-last > .accordion-header {
-  border-bottom-color: transparent;
-}
-.sidemenu-dark .accordion .panel-last > .accordion-header-border, .sidemenu-dark .accordion .panel-last > .accordion-header-selected {
-  border-bottom-color: transparent;
-}
-.sidemenu-dark .accordion .accordion-body {
-  border-bottom-color: transparent;
-  background: #2c3b41;
-  color: #8aa4af;
-}
-.sidemenu-dark .tree-node {
-  height: 40px;
-}
-.sidemenu-dark .tree-node .tree-title {
-  margin: 11px 0px;
-}
-.sidemenu-dark .tree-node-selected, .sidemenu-dark .tree-node-hover {
-  background: #2c3b41;
-  color: #fff;
-}
-.sidemenu-dark .sidemenu-icon-default {
-  background: transparent;
 }
 
 /************
@@ -3533,35 +3485,6 @@ remark: 布局样式相关
 .lay-wrap.vertical > .lay-cont.bottom-xxl {
   padding-bottom: 100px;
   margin-bottom: -100px;
-}
-
-.components-wrap .components-titles {
-  border-bottom: 1px solid #ddd;
-}
-.components-wrap .components-titles .title-item {
-  display: inline-block;
-  height: 32px;
-  line-height: 30px;
-  background: #fff;
-  color: #777;
-  border: 1px solid #ddd;
-  padding: 0px 10px;
-  cursor: pointer;
-  margin: 0px 4px -1px 0px;
-}
-.components-wrap .components-titles .title-item:first-child {
-  margin-left: 4px;
-}
-.components-wrap .components-titles .title-item.active {
-  border-bottom-color: #fff;
-}
-.components-wrap .components-titles .title-item > span {
-  display: inline-block;
-}
-.components-wrap .components-titles .title-item > .icon-clear {
-  cursor: pointer;
-  width: 12px;
-  height: 12px;
 }
 
 /*******************
@@ -4057,7 +3980,6 @@ remark: 表单布局样式、表单相关控件样式
 .f-form-group .f-form-title {
   display: inline-block;
   height: auto;
-  width: 60px;
   line-height: normal;
   vertical-align: middle;
   font-size: 12px;
@@ -4113,7 +4035,7 @@ remark: 屏幕制式判断与选择
 according to breakpoint-next method's return value operate the max-width
 */
 .f-form-container {
-  padding-top: 12px;
+  margin-top: 12px;
 }
 .f-form-container > .f-form-row {
   display: block;

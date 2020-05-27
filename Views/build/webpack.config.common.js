@@ -10,7 +10,8 @@ let projectPath = path.join(__dirname, '..');
  */
 module.exports = {
     entry:{
-        index: [ 'babel-polyfill',path.join(projectPath , 'src', 'index.ts')]
+        index: [ 'babel-polyfill',path.join(projectPath , 'src', 'index.ts')],
+        ocm: [ path.join(projectPath , 'src', 'runtime.ts')]
     }, 
     resolve: {
         extensions: ['.ts', '.js', '.json']

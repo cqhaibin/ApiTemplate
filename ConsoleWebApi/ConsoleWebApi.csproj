@@ -165,6 +165,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <EmbeddedResource Include="Extends\ua-regexes.yaml" />
+    <None Include="ocm.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

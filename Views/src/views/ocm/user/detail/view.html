@@ -1,0 +1,53 @@
+<div class="user-detail f-form-container">
+    <div class="f-form-row">
+        <div class="f-form-group">
+            <div class="f-form-title">用户名</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:nameOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">姓名</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:rNameOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">扩展配置</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:cfgOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">开关</div>
+            <div class="f-form-cont">                
+                <ko-combobox params="options:enableOpt" ></ko-combobox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">
+        <div class="f-form-group">
+            <div class="f-form-title">角色</div>
+            <div class="f-form-cont">
+                <ko-datalist class="role-list" params="options:dlistOpt" ></ko-datalist>
+            </div>
+        </div>
+    </div>
+    <!-- ko ifnot:isEntityNull() -->
+    <div class="f-form-row button-group">
+        <button type="button" class="f-btn f-btn-primary-norm" data-bind="click:onApply" >确定</button>
+        <!-- ko if:showDelete() -->
+        <button type="button" class="f-btn f-btn-aux-level02" data-bind="click:onDelete" >放弃</button>
+        <!-- /ko -->
+        <!-- ko ifnot:showDelete() -->
+        <button type="button" class="f-btn f-btn-aux-level02" data-bind="click:onRemoteDelete" >删除</button>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>

@@ -1,0 +1,26 @@
+<div class="ocm-login-wrap">
+  <div class="ocm-login f-form-container">
+    <div class="f-form-row title">
+        用户登录
+    </div>
+    <div class="f-form-row">
+      <div class="f-form-group">
+          <div class="f-form-title">用户名</div>
+          <div class="f-form-cont">
+              <input class="f-form-control" type="text" data-bind="value:name" tabindex="1" autofocus="autofocus" />
+          </div>
+      </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">密　码</div>
+            <div class="f-form-cont">
+                <input class="f-form-control" type="password" data-bind="value:pwd,event:{keypress:autoLogin}" tabindex="2" />
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row buttons">        
+        <button class="f-btn f-btn-primary-norm" tabindex="3" data-bind="click:login" >登　录</button>
+    </div> 
+  </div>
+</div>

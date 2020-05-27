@@ -22,9 +22,9 @@ namespace ConsoleWebApi
     {
         static void Main(string[] args)
         {
-            using (WebApp.Start<StartUp>("http://*:9909"))
+            using (WebApp.Start<StartUp>("http://*:8002"))
             {
-                Console.WriteLine("start 9909...");
+                Console.WriteLine("start 8002...");
                 Console.ReadKey();
             }
         }

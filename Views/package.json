@@ -1,16 +1,15 @@
 {
-  "name": "fm.mcgs",
+  "name": "bearth.ocm",
   "version": "1.0.0",
-  "description": "fm mcgs",
+  "description": "bearth.ocm",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev node ./build/runtime.js",
     "build": "cross-env NODE_ENV=prod node ./build/runtime.js"
   },
   "keywords": [
-    "fm",
-    "mcgs",
-    "component"
+    "bearth",
+    "ocm"
   ],
   "author": "sam long",
   "license": "MIT",
@@ -44,6 +43,6 @@
     "@types/lodash": "^4.14.136",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
-    "page": "^1.11.5"
+    "js-cookie": "^2.2.1"
   }
 }

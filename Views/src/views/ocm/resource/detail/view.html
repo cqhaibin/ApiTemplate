@@ -1,0 +1,74 @@
+<div class="resource-detail f-form-container">
+    <div class="f-form-row">
+        <div class="f-form-group">
+            <div class="f-form-title">父节点</div>
+            <div class="f-form-cont">
+                <span data-bind="text:parentInfo" ></span>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">编号</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:codeOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">名称</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:nameOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">URL</div>
+            <div class="f-form-cont">
+                <ko-textbox params="options:urlOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">配置</div>
+            <div class="f-form-cont">                
+                <ko-textbox params="options:configOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">类型</div>
+            <div class="f-form-cont">                
+                <ko-combobox params="options:typeOpt" ></ko-combobox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">开关</div>
+            <div class="f-form-cont">                
+                <ko-combobox params="options:enableOpt" ></ko-combobox>
+            </div>
+        </div>
+    </div>
+    <div class="f-form-row">        
+        <div class="f-form-group">
+            <div class="f-form-title">排序号</div>
+            <div class="f-form-cont">                
+                <ko-textbox params="options:orderOpt" ></ko-textbox>
+            </div>
+        </div>
+    </div>
+    <!-- ko ifnot:isEntityNull() -->
+    <div class="f-form-row button-group">
+        <button type="button" class="f-btn f-btn-primary-norm" data-bind="click:onApply" >确定</button>
+        <!-- ko if:showDelete() -->
+        <button type="button" class="f-btn f-btn-aux-level02" data-bind="click:onDelete" >放弃</button>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>

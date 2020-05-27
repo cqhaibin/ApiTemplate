@@ -1,0 +1,88 @@
+*{
+    box-sizing: border-box;
+}
+.f-form-container{
+    .button-group{
+        text-align: center;
+        >.f-btn{
+            margin-left: 10px;
+            &:first-child{
+                margin: 0px;
+            }
+        }
+    }
+}
+.resource-detail, .role-detail, .user-detail{
+    padding: 10px 50px;
+    margin: 0px;
+}
+.ocm-resource-wrap, .ocm-role-wrap, .ocm-user-wrap{
+    .side-left{
+        background: grayscale($color: #eeeeee);
+    }
+}
+.ocm-role-wrap{
+    .role-list{
+        display: block;
+        padding: 4px;
+    }
+    .role-detail{
+        .f-form-title{
+            width: 60px;
+            text-align: right;
+        }
+    }
+}
+.ocm-user-wrap{
+    .user-list{
+        display: block;
+        padding: 4px;
+    }
+    .user-detail{
+        .f-form-title{
+            width: 60px;
+            text-align: right;
+        }
+        .f-form-cont{
+            width: 200px;
+        }
+    }
+}
+
+.ocm-login-wrap{
+    height: 100%;
+    background:rgba(140, 179, 231, 0.2);
+    .ocm-login{
+        transform: translateY(30%);
+        margin: 0px auto;
+        background: rgba(163, 163, 163, 0.2);
+        border-radius: 3px;
+        padding: 20px 10px;
+        width: 400px;
+        height: 260px;
+        .title{
+            font-size: 26px;
+            color: gray;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .buttons{
+            margin-top: 40px;
+            text-align:center;
+        }
+        .f-form-title{
+            font-size: 18px;
+            padding: 0px 20px;
+        }
+        .f-form-control{
+            width: 200px;
+        }
+    }
+}
+
+.ocm-reload-buttons{
+    width: 80px;
+    padding-top: 80px;
+    margin: 0px auto;
+}

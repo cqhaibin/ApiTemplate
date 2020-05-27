@@ -43,31 +43,6 @@
       return obj;
     };
 
-    var get = function get(object, property, receiver) {
-      if (object === null) object = Function.prototype;
-      var desc = Object.getOwnPropertyDescriptor(object, property);
-
-      if (desc === undefined) {
-        var parent = Object.getPrototypeOf(object);
-
-        if (parent === null) {
-          return undefined;
-        } else {
-          return get(parent, property, receiver);
-        }
-      } else if ("value" in desc) {
-        return desc.value;
-      } else {
-        var getter = desc.get;
-
-        if (getter === undefined) {
-          return undefined;
-        }
-
-        return getter.call(receiver);
-      }
-    };
-
     var inherits = function (subClass, superClass) {
       if (typeof superClass !== "function" && superClass !== null) {
         throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
@@ -143,9 +118,7 @@
         var specialValue = {
             'linkbutton': '<a></a>',
             'layout': '<div style="height:100%" ><!-- ko template:{ nodes:$componentTemplateNodes,data:$context.$parent } --><!-- /ko --></div>',
-            'dialog': '<div><!-- ko template:{ nodes:$componentTemplateNodes,data:$context.$parent } --><!-- /ko --></div>',
-            'datagrid': '<table></table>',
-            'treegrid': '<table></table>'
+            'dialog': '<div><!-- ko template:{ nodes:$componentTemplateNodes,data:$context.$parent } --><!-- /ko --></div>'
         };
         var val = specialValue[compName];
         if (!val) {
@@ -396,72 +369,6 @@
         }]);
         return EasyuiDialogs;
     }(BaseComp);
-
-    /**
-     * 基于easyui's desktop
-     * modify: 2019-12-07 sam dargon
-     */
-
-    var EasyuiDesktop = function (_BaseEasyuiComp) {
-        inherits(EasyuiDesktop, _BaseEasyuiComp);
-
-        function EasyuiDesktop(params, componentConfig) {
-            classCallCheck(this, EasyuiDesktop);
-
-            var _this = possibleConstructorReturn(this, (EasyuiDesktop.__proto__ || Object.getPrototypeOf(EasyuiDesktop)).call(this, 'desktop', Object.getOwnPropertyNames($.fn.desktop.defaults), componentConfig));
-            //@ts-ignore
-
-
-            _this.bindMethods();
-            return _this;
-        }
-
-        createClass(EasyuiDesktop, [{
-            key: 'bindMethods',
-            value: function bindMethods() {
-                var _this2 = this;
-
-                var keys = this.getMethodKeys();
-                $.map(keys, function (key) {
-                    _this2[key] = function () {
-                        var args = convertArgToArray.call(arguments);
-                        args.unshift(key);
-                        this.$dom[this.name].apply(this.$dom, args);
-                    };
-                });
-            }
-            /**
-             * 获取方法的Key数据
-             */
-
-        }, {
-            key: 'getMethodKeys',
-            value: function getMethodKeys() {
-                var methodKeys = new Array();
-                //@ts-ignore
-                $.map(Object.getOwnPropertyNames($.fn.desktop.methods), function (key) {
-                    if (key != 'defaults') {
-                        methodKeys.push(key);
-                    }
-                });
-                return methodKeys;
-            }
-        }, {
-            key: 'paint',
-            value: function paint(options) {
-                var opts = this.createOptions(options);
-                //@ts-ignore
-                opts = $.extend($.fn.desktop.defaults, opts);
-                get(EasyuiDesktop.prototype.__proto__ || Object.getPrototypeOf(EasyuiDesktop.prototype), 'paint', this).call(this, opts);
-            }
-        }, {
-            key: 'repaint',
-            value: function repaint(options) {
-                this.paint(options);
-            }
-        }]);
-        return EasyuiDesktop;
-    }(BaseEasyuiComp);
 
     var EasyuiHelper = function () {
         function EasyuiHelper() {
@@ -765,9 +672,6 @@
                     'pagination': 'getPager'
                 },
                 'propertygrid': {
-                    'panel': 'getPanel'
-                },
-                'treegrid': {
                     'panel': 'getPanel'
                 },
                 'datetimebox': {
@@ -1311,22 +1215,14 @@
     }
 
     function use(ko) {
-        //@ts-ignore
         ko.components.register(CONSTKEY.CompPrefix + 'messager', {
             viewModel: EasyuiMessager,
             template: '<div></div>'
         });
         //dialogs
-        //@ts-ignore
         ko.components.register(CONSTKEY.CompPrefix + 'dialogs', {
             viewModel: EasyuiDialogs,
             template: EasyuiDialogs.getTemplate()
-        });
-        //ko-desktop
-        //@ts-ignore
-        ko.components.register(CONSTKEY.CompPrefix + 'desktop', {
-            viewModel: EasyuiDesktop,
-            template: '<div></div>'
         });
     }
 
@@ -1425,21 +1321,18 @@
 
             _this.comps = ko.observableArray();
             _this.paramComp = params.comp;
-            _this.showHeader = params.showHeader || false;
             if (_this.paramComp) {
                 _this.paramComp.subscribe(function (nVal) {
                     var compInfo = {
                         id: 0,
                         name: null,
-                        title: null,
                         params: {},
                         show: ko.observable(false)
                     };
                     if (typeof nVal == 'string') {
-                        compInfo.name = compInfo.title = nVal;
+                        compInfo.name = nVal;
                     } else {
                         compInfo.name = nVal.name;
-                        compInfo.title = nVal.title || nVal.name;
                         compInfo.params = nVal.params || {};
                         compInfo.id = nVal.id || 0;
                     }
@@ -1480,8 +1373,7 @@
             value: function remove(arg) {
                 var comp;
                 var isObj = Object.prototype.toString.call(arg) == '[object String]' ? false : true;
-                var comps = ko.unwrap(this.comps);
-                $.each(comps, function (i, v) {
+                $.each(ko.unwrap(this.comps), function (i, v) {
                     //modify: 2019-07-11 sam  remark: arg is object or string
                     if (isObj && arg.name == v.name && arg.id == v.id || !isObj && v.name == arg) {
                         comp = v;
@@ -1491,40 +1383,16 @@
                     comp.show(false);
                     this.comps.remove(comp);
                 }
-                comps = ko.unwrap(this.comps);
-                if (comps.length > 0) {
-                    var hasShow = false;
-                    $.each(comps, function (i, v) {
-                        if (v.show()) {
-                            hasShow = true;
-                            return false;
-                        }
-                    });
-                    if (!hasShow) {
-                        comps[comps.length - 1].show(true);
-                    }
-                }
             }
         }, {
             key: 'removeAll',
             value: function removeAll() {
                 this.comps.removeAll();
             }
-        }, {
-            key: 'show',
-            value: function show(data) {
-                $.each(ko.unwrap(this.comps), function (i, v) {
-                    if (ko.unwrap(data.name == v.name && data.id == v.id)) {
-                        v.show(true);
-                    } else {
-                        v.show(false);
-                    }
-                });
-            }
         }], [{
             key: 'getTemplate',
             value: function getTemplate$$1() {
-                return '<div class="components-wrap"><div class="components-header" data-bind="if:showHeader"><div class="components-titles" data-bind="foreach:comps" ><div class="title-item" data-bind="css:{active:show},click:$parent.show.bind($parent)" ><span data-bind="text:$data.title"></span><span class="icon-clear" data-bind="click:$parent.remove.bind($parent)" ></span></div></div></div><div class="components-list" data-bind="foreach:comps" ><div class="components-item" data-bind="component:$data,visible:show,attr:{id:$data.domId}" ></div></div></div>';
+                return '<div class="components-list" data-bind="foreach:comps" ><div class="components-item" data-bind="component:$data,visible:show,attr:{id:$data.domId}" ></div></div>';
             }
         }]);
         return Components;

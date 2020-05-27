@@ -1,7 +1,0 @@
-{
-  "gispreview": "/mcgs/mcgs/RenderMcgs?id=1&groupCode=gis&typeId=2",
-  "gisedit": "/mcgs/mcgs/RenderMcgs?id=1&groupCode=gis&typeId=1",
-  "ocm-resource": "/earth/Home/RenderComponent?name=ocm-resource&type=ocm",
-  "ocm-role": "/earth/Home/RenderComponent?name=ocm-role&type=ocm",
-  "ocm-user": "/earth/Home/RenderComponent?name=ocm-user&type=ocm"
-}
